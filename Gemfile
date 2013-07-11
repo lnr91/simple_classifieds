@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 gem 'factory_girl_rails', '1.4.0'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'bcrypt-ruby', '3.0.1' #hash fnction to encrytpt password
 gem 'simple_form'
 gem 'jquery-rails'
 

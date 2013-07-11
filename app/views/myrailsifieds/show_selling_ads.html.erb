@@ -1,0 +1,29 @@
+<h1>My Selling ads</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @classifieds.each do |classified| %>
+      <tr>
+        <td><%= classified.name %></td>
+        <td><%= classified.description %></td>
+        <td><%= classified.price %></td>
+        <td><%= classified.category_id %></td>
+        <td><%= link_to 'Show', classified %></td>
+        <td><%= link_to 'Edit', edit_classified_path(classified) %></td>
+        <td><%= link_to 'Destroy', classified, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Classified', new_classified_path %>

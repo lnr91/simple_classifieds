@@ -1,0 +1,30 @@
+<% if @category.parent_category %>
+    <%= link_to @category.parent_category.name, category_path(@category.parent_category) %> >
+<% end %>
+<%= link_to @category.name, category_path(@category) %>
+
+
+<p><%= link_to 'Back', categories_path %></p>
+
+<br/>
+
+
+
+List of Classifieds
+
+<% @subcategories.each do |subcategory| %>
+    <ul>
+      <% subcategory.classifieds.each do |classified| %>
+          <li>
+            <div class='classified'><%= link_to classified.name, classified_path(classified) %></div>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+
+
+
+
+
+

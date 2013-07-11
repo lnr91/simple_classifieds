@@ -1,4 +1,30 @@
 BuyNSell::Application.routes.draw do
+
+  resources :users do
+    collection do
+      get :activate_email
+    end
+  end
+
+  resources :sessions, only: [:create]
+  match '/signin' => 'sessions#new', as: 'signin'
+  match '/signout' => 'sessions#destroy', as: 'signout'
+
+  resources :classifieds
+
+  resource :myrailsified, only: [:show] do
+    get :show_selling_ads
+  end
+
+
+  get "pages/home"
+
+  resources :categories
+
+
+  root to: 'pages#home'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

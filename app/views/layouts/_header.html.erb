@@ -1,0 +1,33 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">Railsifieds</a>
+      <nav>
+
+        <% if signed_in? %>
+            <ul class="nav pull-right">
+              <li><%= current_user.email %></li>
+              <li><%= link_to 'Home', root_path %></li>
+              <li><%= link_to 'Profile', user_path(current_user) %></li>
+                      <li><%= link_to 'My Railsifieds',myrailsified_path %>
+                      <li class='divider'></li>
+              <li>
+                <%= link_to "Sign out", signout_path, method: "delete" %>
+              </li>
+            </ul>
+            </li>
+        <% else %>
+            <ul class="nav pull-right">
+              <li>
+                <%= link_to 'Sign in', signin_path %>
+              </li>
+              <li>
+                <%= link_to 'Sign up', new_user_path %>
+              </li>
+            </ul>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+</header>
+<%= link_to 'Post Ad',new_classified_path,class:'btn btn-large btn-primary pull-right' %>

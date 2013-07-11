@@ -1,0 +1,2 @@
+module MyrailsifiedsHelper
+end

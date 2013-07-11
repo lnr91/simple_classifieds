@@ -1,0 +1,13 @@
+<%= simple_form_for(@classified) do |f| %>
+
+    <% if !signed_in? %>
+        <%= f.input :email do %>
+            <%= text_field_tag 'email',@classified.user.email %>
+        <% end %>
+    <% end %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price, as: :integer %>
+    <%= f.input :category_id, as: :integer%>
+    <%= f.submit %>
+<% end %>
