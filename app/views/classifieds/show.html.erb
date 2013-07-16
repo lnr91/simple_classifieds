@@ -19,5 +19,21 @@
 </p>
 
 
-<%= link_to 'Edit', edit_classified_path(@classified) %> |
+<%= simple_form_for @message do |f| %>
+    <%= f.hidden_field :classified_id %>       <!--Since we built message like so :@classified.messages.build ..so the classified_id is already filled in for us-->
+    <% if !signed_in? %>
+        <%= f.input :email do %>
+            <%= text_field_tag 'email' %>
+        <% end %>
+    <% else %>
+        <%= hidden_field_tag :email, current_user.email %>
+    <% end %>
+    <%= f.input :content %>
+    <%= f.submit %>
+<% end %>
+
+
+
+
+
 <%= link_to 'Back', classifieds_path %>

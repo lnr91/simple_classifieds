@@ -3,18 +3,22 @@
 
   <% @categories.each do |category| %>
       <tr>
-        <td><%= link_to category.name, category %></td>
+        <td><%= link_to category.name, category %></td> <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category_path(category), method:     :delete %></td>
 
       </tr>
       <% category.subcategories.each do |subcategory| %>
           <tr>
 
-            <td>--<%= link_to subcategory.name, subcategory %></td>
+            <td>--<%= link_to subcategory.name, subcategory %></td> <td><%= link_to 'Edit', edit_category_path(subcategory) %></td>
+            <td><%= link_to 'Destroy', category_path(subcategory),method: :delete %></td>
 
           </tr>
       <% end %>
   <% end %>
 </table>
+
+<%= link_to 'New Category', new_category_path %>
 
 <br/>
 

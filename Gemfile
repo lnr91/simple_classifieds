@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'bcrypt-ruby', '3.0.1' #hash fnction to encrytpt password
 gem 'simple_form'
 gem 'jquery-rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'pg','0.12.2'

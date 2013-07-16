@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.where(parent_id: nil)
     respond_to do |format|
-      format.html # _index.html.erb
+      format.html {render 'admin/categories/index'}
       format.json { render json: @categories }
     end
   end

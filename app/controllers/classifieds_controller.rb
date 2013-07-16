@@ -1,16 +1,23 @@
 class ClassifiedsController < ApplicationController
   # GET /classifieds
   # GET /classifieds.json
-  before_filter :signed_in_user, only:[:edit,:destroy,:update]
-  before_filter(only:[:edit,:destroy,:update])  do |c|
+  before_filter :signed_in_user, only: [:edit, :destroy, :update]
+  before_filter(only: [:edit, :destroy, :update]) do |c|
     user_id = Classified.find_by_id(params[:id]).user_id
-    c.correct_user user_id    # Use block form ....This is the way to send parameters to method used in
+    c.correct_user user_id # Use block form ....This is the way to send parameters to method used in
   end
 
   def index
     @classifieds = Classified.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html do
+        if !signed_in? || !is_admin?
+          render 'index'
+        else
+          render 'admin/classifieds/index'
+        end
+
+      end
       format.json { render json: @classifieds }
     end
   end
@@ -19,6 +26,7 @@ class ClassifiedsController < ApplicationController
   # GET /classifieds/1.json
   def show
     @classified = Classified.find(params[:id])
+    @message = @classified.messages.build # In this case ..its same as Message.new ....because while building an empty message , since this message is not nested in some routes like  users/12/messages ....so when u do form_for @message ....it doesnt matter much...the only advantage of building through association a new record (not creating mind u ...building) is that when u do form_for @message ...it auto.. gets the route path of the message
 
     respond_to do |format|
       format.html # show.html.erb
@@ -48,13 +56,11 @@ class ClassifiedsController < ApplicationController
     if signed_in?
       @classified = current_user.classifieds.build(params[:classified])
     else
-      if @user = User.find_by_email(params[:email])
+      if user_present?(params[:email])   # checks whether user is already present ...and if present assigns it to @user
         redirect_to signin_path, notice: 'This account is already in use.Please sign in to use it'
         return
       else
-        @user = User.new(email: params[:email])
-        @user.save(validate: false)
-        UserMailer.confirm_signup(@user)
+        create_impulse_signup params[:email]
       end
       @classified = @user.classifieds.build(params[:classified])
     end
@@ -100,4 +106,9 @@ class ClassifiedsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+
+
 end

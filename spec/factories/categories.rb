@@ -2,7 +2,11 @@
 
 FactoryGirl.define do
   factory :category do
-    name "MyString"
-    parent_id 1
+    sequence(:name) {|n| "Category #{n}" }
+  end
+
+  factory :subcategory do
+    sequence(:name) {|n| "Subcategory #{n}" }
+    category
   end
 end

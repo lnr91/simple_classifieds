@@ -6,6 +6,11 @@ BuyNSell::Application.routes.draw do
     end
   end
 
+
+  namespace :admin do
+    match '/' => 'admin#home'
+    resources :users
+  end
   resources :sessions, only: [:create]
   match '/signin' => 'sessions#new', as: 'signin'
   match '/signout' => 'sessions#destroy', as: 'signout'
@@ -21,6 +26,10 @@ BuyNSell::Application.routes.draw do
 
   resources :categories
 
+  resource :messages, only: [:create] do
+    get :show_sent_messages, as: 'show_sent'
+    get :show_received_messages, as: 'show_received'
+  end
 
   root to: 'pages#home'
 

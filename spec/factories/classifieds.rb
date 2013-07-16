@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :classified do
-    name "MyString"
-    description "MyString"
-    price 1
-    category_id 1
+    sequence(:name) {|n| "Classified #{n}"}
+    sequence(:description) {|n| "Classified Description #{n}"}
+    price rand(100..30000)
+    category
   end
 end

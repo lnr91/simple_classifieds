@@ -18,10 +18,11 @@
     <td><%= classified.price %></td>
     <td><%= classified.category_id %></td>
     <td><%= link_to 'Show', classified %></td>
+    <td><%= link_to 'Edit', edit_classified_path(classified) %></td>
+    <td><%= link_to 'Destroy', classified_path(classified), method: :delete%>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Classified', new_classified_path %>

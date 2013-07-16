@@ -2,7 +2,7 @@
 
     <% if !signed_in? %>
         <%= f.input :email do %>
-            <%= text_field_tag 'email',@classified.user.email %>
+            <%= text_field_tag 'email' %>
         <% end %>
     <% end %>
     <%= f.input :name %>
