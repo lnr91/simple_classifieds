@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>Classified Title</td>
+    <td>To</td>
+    <td>Message</td>
+    <td>Reply</td>
+  </tr>
+  <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.classified.name %></td>
+        <td><%= message.receiver.email%></td>
+        <td><%= message.content %></td>
+        <td>Reply</td>
+      </tr>
+  <% end %>
+
+
+</table>

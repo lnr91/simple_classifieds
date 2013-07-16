@@ -1,0 +1,20 @@
+<table>
+
+
+  <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, category %></td>
+
+      </tr>
+      <% category.subcategories.each do |subcategory| %>
+          <tr>
+
+            <td>--<%= link_to subcategory.name, subcategory %></td>
+
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<br/>
+
