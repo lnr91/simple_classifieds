@@ -3,7 +3,7 @@ development:
   adapter: postgresql
   database: buy_n_sell_development_db
   username: lnreddy
-  password:
+  password: password      # I have changed the password of lnreddy to 'password'...previously there was no password...also even if i dont supply password in database.yml; file it seems to work....dunno why....anyway tp push to heroku ..u need to specify a password ...thats why I added a password
   pool: 5
   timeout: 5000
 
@@ -14,7 +14,7 @@ test:
   adapter: postgresql
   database: buy_n_sell_test_db
   username: lnreddy
-  password:
+  password: password
   pool: 5
   timeout: 5000
 
@@ -22,6 +22,6 @@ production:
   adapter: postgresql
   database: buy_n_sell_production_db
   username: lnreddy
-  password:
+  password: password
   pool: 5
   timeout: 5000

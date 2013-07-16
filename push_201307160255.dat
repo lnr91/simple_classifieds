@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"postgres://lnreddy:password@localhost/buy_n_sell_development_db","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/4591974615","stream_state":{},"completed_tables":[],"table_filter":null,"local_tables_info":{"categories":7,"schema_migrations":11,"classifieds":1,"messages":0,"users":3}}
