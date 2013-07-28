@@ -11,6 +11,9 @@ gem 'bcrypt-ruby', '3.0.1' #hash fnction to encrytpt password
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'figaro'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+
 
 group :development, :test do
   gem 'pg','0.12.2'
@@ -25,7 +28,7 @@ group :test do
   gem 'capybara-webkit','0.13.0'
   gem 'guard-rspec'
   gem 'guard-spork'
-
+  gem 'email_spec'
 end
 group :production do
   gem 'pg', '0.12.2'

@@ -1,3 +1,4 @@
+<%= content_for :title, @category.name %>
 <% if @category.parent_category %>
     <%= link_to @category.parent_category.name, category_path(@category.parent_category) %> >
 <% end %>

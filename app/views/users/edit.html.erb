@@ -1,6 +1,17 @@
-<h1>Editing user</h1>
+<%= content_for :title, 'Account Settings' %>
+<%= content_for :header do %>
+    <%= javascript_include_tag 'view_specific/edit_user' %>
+<% end %>
 
-<%= render 'form' %>
+
+
+<h3>Account Settings</h3>
+
+<div id='change_password_link'><%= link_to 'Change Password', '#' %></div>
+<%= render 'form_password', user: @user %>
+
+<div id='change_email_link'><%= link_to 'Change Email', '#' %></div>
+<%= render 'form_email',user: @user %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

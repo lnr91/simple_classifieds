@@ -1,0 +1,5 @@
+<%= simple_form_for user,url: update_other_fields_user_path,remote:true, validate: true,html:{id:'email_form'} do |f| %>
+    <%= f.input :email, validate: true %>
+    <%= f.input :old_password, validate: true %>
+    <%= f.submit %>
+<% end %>

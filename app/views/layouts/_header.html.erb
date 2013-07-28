@@ -6,9 +6,8 @@
 
         <% if signed_in? %>
             <ul class="nav pull-right">
-              <li><%= current_user.email %></li>
               <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Profile', user_path(current_user) %></li>
+              <li class='current_user_email'><%= link_to current_user.email, user_path(current_user) %></li>
               <li><%= link_to 'Admin Panel', admin_path if is_admin? %></li>
 
               <li><%= link_to 'My Railsifieds', myrailsified_path %>
@@ -21,6 +20,9 @@
         <% else %>
             <ul class="nav pull-right">
               <li>
+                <%= link_to 'Home', root_path %>
+              </li>
+              <li>
                 <%= link_to 'Sign in', signin_path %>
               </li>
               <li>
@@ -31,5 +33,6 @@
       </nav>
     </div>
   </div>
+  <%= yield :header %>        <!--This is used mainly for page specific javascript that we load using the content_for :header block in the views-->
 </header>
 <%= link_to 'Post Ad', new_classified_path, class: 'btn btn-large btn-primary pull-right' %>

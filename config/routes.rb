@@ -4,6 +4,10 @@ BuyNSell::Application.routes.draw do
     collection do
       get :activate_email
     end
+    member do
+      put :update_other_fields
+      put :update_password
+    end
   end
 
 
@@ -32,6 +36,8 @@ BuyNSell::Application.routes.draw do
   end
 
   root to: 'pages#home'
+
+resources :password_resets,except:[:index,:destroy,:show]
 
 
   # The priority is based upon order of creation:

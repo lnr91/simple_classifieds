@@ -5,6 +5,6 @@ FactoryGirl.define do
     from_id 1
     to_id 1
     content "MyString"
-    classified nil
+    classified
   end
 end

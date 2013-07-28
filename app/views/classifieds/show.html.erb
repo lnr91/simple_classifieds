@@ -13,12 +13,6 @@
   <%= @classified.price %>
 </p>
 
-<p>
-  <b>Category:</b>
-  <%= @classified.category_id %>
-</p>
-
-
 <%= simple_form_for @message do |f| %>
     <%= f.hidden_field :classified_id %>       <!--Since we built message like so :@classified.messages.build ..so the classified_id is already filled in for us-->
     <% if !signed_in? %>

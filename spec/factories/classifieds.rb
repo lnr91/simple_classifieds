@@ -4,7 +4,8 @@ FactoryGirl.define do
   factory :classified do
     sequence(:name) {|n| "Classified #{n}"}
     sequence(:description) {|n| "Classified Description #{n}"}
-    price rand(100..30000)
+    price 1500
     category
+    user
   end
 end

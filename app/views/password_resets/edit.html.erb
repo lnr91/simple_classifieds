@@ -1,0 +1,14 @@
+<%= provide(:title, 'Create new password') %>
+
+<% @user.errors.full_messages.each do |e| %>
+    <%= e %>
+<% end %>
+
+<%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %>
+    <%= f.submit 'Reset password', class: 'btn btn-large btn-primary' %>
+<% end %>
+

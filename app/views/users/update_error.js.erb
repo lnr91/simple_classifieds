@@ -1,0 +1,9 @@
+console.log('I am in update.js.erb');
+$('#flash_messages').html('<%= j render 'layouts/show_flash_messages' %>');
+<% if params[:user].include?(:password) %>
+$('.edit_user').html('<%= j render 'form_password',user:@user %>');
+$('#password_form').show();
+<% elsif params[:user].include?(:email)  %>
+$('.edit_user').html('<%= j render 'form_email',user:@user %>');
+$('#email_form').show();
+<% end %>

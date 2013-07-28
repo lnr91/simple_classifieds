@@ -12,6 +12,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -38,6 +39,10 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
+
+    # This is for email_spec gem...it includes the matcherss for email_spec
+    config.include(EmailSpec::Helpers)
+    config.include(EmailSpec::Matchers)
 
     config.before(:suite) do
       DatabaseCleaner.clean_with :truncation

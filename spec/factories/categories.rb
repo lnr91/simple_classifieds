@@ -2,11 +2,13 @@
 
 FactoryGirl.define do
   factory :category do
-    sequence(:name) {|n| "Category #{n}" }
+    sequence(:name) { |n| "Category #{n}" }
+    trait :subcategory do
+      sequence(:name) { |n| "Subategory #{n}" }
+      parent_category :category
+    end
+
+    factory :subcategory, traits: [:subcategory]
   end
 
-  factory :subcategory do
-    sequence(:name) {|n| "Subcategory #{n}" }
-    category
-  end
 end

@@ -27,6 +27,11 @@ module SessionsHelper1
     redirect_to signin_path, notice: 'Please sign in' unless signed_in?
   end
 
+
+  def not_signed_in_user
+    redirect_to root_path if signed_in?
+  end
+
 =begin
   # In context of editing and destroying a classified
   def correct_user_classified
