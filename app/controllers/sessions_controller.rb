@@ -19,6 +19,20 @@ class SessionsController < ApplicationController
 
   end
 
+  def create_from_omniauth
+    unless @auth = Authentication.find_from_hash(env['omniauth.auth'])
+      # Create a new user or add an auth to existing user, depending on
+      # whether there is already a user signed in.
+      Rails.logger.debug "i am in unless of create_from_omniauth"
+      @auth = Authentication.create_from_hash(env['omniauth.auth'])
+    end
+    unless @auth.errors.blank?
+      redirect_to signin_path and return
+    end
+    sign_in @auth.user
+    redirect_to root_path
+  end
+
   def destroy
     sign_out
     redirect_to root_path

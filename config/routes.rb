@@ -1,5 +1,9 @@
 BuyNSell::Application.routes.draw do
 
+  match 'auth/:provider/callback', to: 'sessions#create_from_omniauth'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to:'sessions#destroy', as:'signout'
+
   resources :users do
     collection do
       get :activate_email

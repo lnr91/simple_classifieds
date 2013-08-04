@@ -13,6 +13,8 @@ gem 'jquery-rails'
 gem 'figaro'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
+gem 'omniauth-facebook'
+
 
 
 group :development, :test do
