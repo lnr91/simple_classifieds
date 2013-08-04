@@ -6,6 +6,7 @@ module UsersHelper
     @user.impulse_signup= true # so that it skips password validations while creating a new user
     if @user.save()
       UserMailer.confirm_signup(@user).deliver
+      @user
     end
   end
 

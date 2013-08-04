@@ -89,10 +89,7 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       end
     else
-      @user.errors.full_messages.each do |e|
-        raise e.to_s
-      end
-      respond_to do |format|
+        respond_to do |format|
         format.html { render template: 'users/form_new_password', locals: {user: @user} }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         format.js { render 'update_error' }
@@ -132,9 +129,7 @@ class UsersController < ApplicationController
       return
     end
     flash[:notice]= 'Your email has been activated'
-
     redirect_to @user
   end
-
 
 end

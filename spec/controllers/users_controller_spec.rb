@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+include Utilities
 describe UsersController do
   let(:user) { Factory(:user) }
   let(:admin) { Factory(:admin) }
@@ -126,7 +126,7 @@ describe UsersController do
   end
   describe 'users#update_other_fields' do
     context 'when not signed in' do
-      before { put :update_other_fields, id: user,email:'newq@gmail.com' }
+      before { put :update_other_fields, id: user, email: 'newq@gmail.com' }
       specify { response.should redirect_to signin_path }
       it 'should not update user attributes' do
         user.reload
@@ -168,7 +168,7 @@ describe UsersController do
           end
         end
         describe 'with invalid password' do
-          before {put :update_other_fields, id: user, user: {old_password: 'pssweeeddd', email: 'newemail@gmail.com'}          }
+          before { put :update_other_fields, id: user, user: {old_password: 'pssweeeddd', email: 'newemail@gmail.com'} }
           it 'should re render the edit page' do
             response.should render_template 'edit'
           end
@@ -183,8 +183,8 @@ describe UsersController do
             user.impulse_signup= true # so that it skips password validations while creating a new user
             user.save!
           end
-          before {put :update_other_fields, id: user, email:'newemail@gmail.com'}
-          specify {response.should render_template 'form_new_password'}
+          before { put :update_other_fields, id: user, email: 'newemail@gmail.com' }
+          specify { response.should render_template 'form_new_password' }
           it 'should not update attributes' do
             user.reload
             user.email.should_not eq('newemail@gmail.com')
@@ -205,9 +205,28 @@ describe UsersController do
     end
   end
   describe 'Users#update_password' do
-
-
+    context 'when not signed in' do
+      before { put :update_password, id: user, password: 'password', password_confirmation: 'password' }
+      specify { response.should redirect_to signin_path }
+    end
+    context 'when signed in' do
+      describe 'impulse user password not set' do
+        before do
+          @impulse_user = create_impulse_signup 'impulse_user@gmail.com'
+          log_in @impulse_user
+          put :update_password, id: @impulse_user, user: {password: 'password', password_confirmation: 'password'}
+        end
+        it 'should load user in @user' do
+          assigns(:user).should eq(@impulse_user)
+        end
+        it 'should update user attributes' do
+          @impulse_user.reload
+          @impulse_user.password_digest.should_not be_nil
+        end
+        it 'should redirect to user account page' do
+          response.should redirect_to user_path @impulse_user
+        end
+      end
+    end
   end
-
-
 end
